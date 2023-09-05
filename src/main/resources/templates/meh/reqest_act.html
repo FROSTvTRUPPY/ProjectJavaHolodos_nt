@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин</title>
+    <link rel="stylesheet" href="../../static/css/entry.css" type="text/css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../static/css/menu.css.css" type="style/css">
+
+</head>
+<body>
+
+<ul class="nav" style="background-color: #F37E1C;">
+    <h2 th:text="${account.NAME_FIRST}" style="margin-left: 20px; padding-top: 15px;"></h2>
+    <a href="/h_logout" class="btn btn-primary btn-lg active" style="margin-left: auto; margin-right: 0px; display: inline-block; background-color: #924C11; height: 80px; padding-top: 20px; border-radius: 0px; "  >Выход</a>
+</ul>
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-left: 41%; margin-top: 40px">
+    <label class="" style="text-align: center">
+        <a th:href="@{/meh/meh_redy/{id}(id=${account.ID})}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="height: 80px; padding-top: 24px; background-color: #F37E1C; border-radius: 0px;"> Завершенные </a>
+    </label>
+    <label class="" style="text-align: center">
+        <a th:href="@{/meh/meh_activ/{id}(id=${account.ID})}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="padding-top: 24px; height: 80px; background-color: #924C11; border-radius: 0px;" > Действующие </a>
+    </label>
+</div>
+
+<div style="width: 60%; margin-left: 20%">
+    <h2 th:text="${contrs.NAME}"></h2>
+    <h4 th:text="'Механик: '+ ${contrs.IDMEH}">Механик: </h4>
+    <h4 th:text="'Диспетчер: ' + ${contrs.IDDIS}"></h4>
+    <h5 th:text="'Магазин: ' + ${contrs.MAGAdress}"></h5>
+    <div class="form-group">
+        <h5>Описание:</h5>
+        <textarea th:text="${contrs.DESC}" class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+    </div></br>
+
+    <form th:action="@{/meh/reqest_act/{id}(id=${contrs.ID})}" th:object="${req}" method="post">
+        <div class="form-group">
+            <label for="DESC">Дополнить описание</label>
+            <textarea  th:field="*{DESC}" type="text" class="form-control" id="DESC" placeholder="Опишите проблему" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="STATUS">Сменить статус</label>
+            <input  th:field="*{STATUS}" type="text" class="form-control" id="STATUS" th:text="${contrs.STATUS}">
+        </div>
+        <button type="submit" class="btn btn-secondary btn-lg" style="height: 50px; padding-top: -6px;margin-top: 20px; background-color: #7DC00F; border-radius: 0px;">Изменить</button>
+    </form>
+
+    <label class="" style="text-align: center">
+        <a th:href="@{/meh/reqest_end/{id}(id=${contrs.ID})}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="height: 50px; padding-top: -6px;margin-top: 20px; background-color: #7DC00F; border-radius: 0px;"> Завершить </a>
+    </label>
+</div>
+
+
+</body>
+</html>
