@@ -25,7 +25,6 @@ public class Application {
 		Runtime rt = Runtime.getRuntime();
 		rt.exec("rundll32 url.dll,FileProtocolHandler " + "http:/localhost:8080/pre_join");
 		//rt.exec("rundll32 url.dll,FileProtocolHandler " + "http:/localhost:8080/login");
-		//rt.exec("rundll32 url.dll,FileProtocolHandler " + "http:/localhost:8080/timed");
 	}
 
 	@Configuration
